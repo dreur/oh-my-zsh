@@ -1,25 +1,95 @@
-# Push and pop directories on directory stack
-alias pu='pushd'
-alias po='popd'
+# Seen at: http://github.com/strcat/dotfiles/ and in grml.
+# Robust replacement for global aliases, and you can edit them too.
+# requires extended globbing.
 
-# Basic directory operations
-alias ...='cd ../..'
-alias -- -='cd -'
+typeset -A abbrevs
+abbrevs=('...' '../..'
+         '....' '../../..'
+         'pu' 'pushd'
+		 'po' 'popd'
+         # 'BG' '& exit' Breaks the spectrum script
+         'C' '| wc -l'
+         'G' '|& grep'
+         'H' '| head'
+         'L' '| less'
+         'LL' '|& less -r'
+         'N' '&>/dev/null'
+         'R' '| tr A-z N-za-m'
+         'SL' '| sort | less'
+         'S' '| sort -u'
+         'T' '| tail'
+         'da' 'du -sch'
+         'j' 'jobs -l'
+         'CH' "./configure --help"
+         'dir' 'ls -lSrah'
+		 'ls' 'ls --color=auto'
+		 'sl' 'ls'
+         'lad' $'ls -d .*(/)\n# only show dot-directories'
+         'lsa' $'ls -a .*(.)\n# only show dot-files'
+         'lss' $'ls -l *(s,S,t)\n# only files with setgid/setuid/sticky flag'
+         'lsl' $'ls -l *(@[1,10])\n# only symlinks'
+         'lsx' $'ls -l *(*[1,10])\n# only executables'
+         'lsw' $'ls -ld *(R,W,X.^ND/)\n# world-{readable,writable,executable} files'
+         'lsbig' $'ls -flh *(.OL[1,10])\n# display the biggest files'
+         'lsd' $'ls -d *(/)\n# only show directories'
+         'lse' $'ls -d *(/^F)\n# only show empty directories'
+         'lsnew' $'ls -rl *(D.om[1,10])\n# display the newest files'
+         'lsold' $'ls -rtlh *(D.om[-11,-1])\n# display the oldest files'
+         'lssmall' $'ls -Srl *(.oL[1,10])\n# display the smallest files'
+         'rw-' 'chmod 600'
+         '600' 'chmod u+rw-x,g-rwx,o-rwx'
+         'rwx' 'chmod u+rwx'
+         '700' 'chmod u+rwx,g-rwx,o-rwx'
+         'r--' 'chmod u+r-wx,g-rwx,o-rwx'
+         '644' $'chmod u+rw-x,g+r-wx,o+r-wx\n # 4=r,2=w,1=x'
+         '755' 'chmod u+rwx,g+r-w+x,o+r-w+x'
+         'md' 'mkdir -p '
+         'insecssh' 'ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
+         'insecscp' 'scp -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
+		 'history' $'fc -l 1\n# Show history'
+         'cx' 'chmod +x'
+         'e'  'print -l'
+         'se' 'setopt interactivecomments'
+				 'afind' 'ack-grep -il'
+         'cvss' 'cvs -q -n update'
+ )
 
-# Super user
-alias _='sudo'
+# Create global aliases from the abbreviations.
+for abbr in ${(k)abbrevs}; do
+ alias -g $abbr="${abbrevs[$abbr]}"
+done
 
-#alias g='grep -in'
+globalias() {
+   local MATCH
+   LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
+   LBUFFER+=${abbrevs[$MATCH]:-$MATCH}
+   zle self-insert
+}
 
-# Show history
-alias history='fc -l 1'
+zle -N globalias
 
-# List direcory contents
-alias lsa='ls -lah'
-alias l='ls -la'
-alias ll='ls -l'
-alias sl=ls # often screw this up
+# List abbreviations and abbr binding, picks out help in green.
+H-Abbrevs() {
+  echo "Displaying shell abbreviations"
+  echo "Keybinding is:" ${$(bindabbr | grep globalias)[1]}
+  for abbr in ${(ok)abbrevs}; do
+    printf "%-20s: %s" $abbr ${abbrevs[$abbr]:s/
+/$fg[green] /} # Replaces newlines with spaces
+    print -l $reset_color
+  done
+}
 
-alias afind='ack-grep -il'
+# run command line as user root via sudo:
+sudo-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    [[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
+}
+zle -N sudo-command-line
 
-alias x=extract
+# run command line with noglob set:
+noglob-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    [[ $BUFFER != noglob\ * ]] && BUFFER="noglob $BUFFER"
+}
+zle -N noglob-command-line
+
