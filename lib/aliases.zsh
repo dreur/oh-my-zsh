@@ -46,11 +46,11 @@ abbrevs=('...' '../..'
          'md' 'mkdir -p '
          'insecssh' 'ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
          'insecscp' 'scp -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
-		 'history' $'fc -l 1\n# Show history'
+	 'history' $'fc -l 1'
          'cx' 'chmod +x'
          'e'  'print -l'
          'se' 'setopt interactivecomments'
-				 'afind' 'ack-grep -il'
+	 'afind' 'ack-grep -il'
          'cvss' 'cvs -q -n update'
  )
 
