@@ -1,3 +1,5 @@
+setopt interactivecomments
+
 # Seen at: http://github.com/strcat/dotfiles/ and in grml.
 # Robust replacement for global aliases, and you can edit them too.
 # requires extended globbing.
