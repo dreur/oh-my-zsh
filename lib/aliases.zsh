@@ -9,19 +9,6 @@ abbrevs=('...' '../..'
          '....' '../../..'
          'pu' 'pushd'
 		 'po' 'popd'
-         # 'BG' '& exit' Breaks the spectrum script
-         'C' '| wc -l'
-         'G' '|& grep'
-         'H' '| head'
-         'L' '| less'
-         'LL' '|& less -r'
-         'N' '&>/dev/null'
-         'R' '| tr A-z N-za-m'
-         'SL' '| sort | less'
-         'S' '| sort -u'
-         'T' '| tail'
-         'da' 'du -sch'
-         'j' 'jobs -l'
          'CH' "./configure --help"
          'dir' 'ls -lSrah'
 		 'ls' 'ls --color=auto'
@@ -53,7 +40,6 @@ abbrevs=('...' '../..'
          'e'  'print -l'
          'se' 'setopt interactivecomments'
 	 'afind' 'ack-grep -il'
-         'cvss' 'cvs -q -n update'
  )
 
 # Create global aliases from the abbreviations.

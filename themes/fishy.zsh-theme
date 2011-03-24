@@ -1,9 +1,22 @@
 # ZSH Theme emulating the Fish shell's default prompt.
 
 local user_color='green'; [ $UID -eq 0 ] && user_color='red'
-PROMPT='%n@%m %{$fg[$user_color]%}%~%{$reset_color%}%(!.#.>) '
+PROMPT='%n@%{$FX[underline]%}%m%{$reset_color%} %{$fg[$user_color]%}%~%{$reset_color%}%(!.#.>) '
 PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
-RPS1='%(?..%{$fg[red]%}%? ↵%{$reset_color%})$(git_prompt_info)'
 
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[cyan]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+local return_status="%{$fg_bold[red]%}%(?..%?)%{$reset_color%}"
+RPROMPT='$(vi_mode_prompt_info)${return_status}$(git_prompt_info)$(git_prompt_status)%{$reset_color%}'
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" "
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_DIRTY=""
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} added"
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} modified"
+ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} deleted"
+ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} renamed"
+ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} unmerged"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} untracked"
+
+MODE_INDICATOR="%{$fg_bold[magenta]%}<%{$reset_color%}%{$fg[magenta]%}<<%{$reset_color%}"
