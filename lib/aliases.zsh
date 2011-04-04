@@ -8,11 +8,10 @@ typeset -A abbrevs
 abbrevs=('...' '../..'
          '....' '../../..'
          'pu' 'pushd'
-		 'po' 'popd'
-         'CH' "./configure --help"
+         'po' 'popd'
          'dir' 'ls -lSrah'
-		 'ls' 'ls --color=auto'
-		 'sl' 'ls'
+         'ls' 'ls --color=auto'
+         'sl' 'ls'
          'lad' $'ls -d .*(/)\n# only show dot-directories'
          'lsa' $'ls -a .*(.)\n# only show dot-files'
          'lss' $'ls -l *(s,S,t)\n# only files with setgid/setuid/sticky flag'
@@ -35,7 +34,6 @@ abbrevs=('...' '../..'
          'md' 'mkdir -p '
          'insecssh' 'ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
          'insecscp' 'scp -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
-	 'history' $'fc -l 1'
          'cx' 'chmod +x'
          'e'  'print -l'
          'se' 'setopt interactivecomments'
@@ -80,4 +78,9 @@ noglob-command-line() {
     [[ $BUFFER != noglob\ * ]] && BUFFER="noglob $BUFFER"
 }
 zle -N noglob-command-line
+
+rtfm() {
+  help $@ || nocorrect /usr/bin/man $@ || $@ -h || $@ --help || x-www-browser "http://www.google.com/search?q=linux ubuntu $@";
+}
+alias man='rtfm'
 
