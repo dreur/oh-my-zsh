@@ -55,8 +55,6 @@ zstyle ':completion:*' list-separator '#'
 zstyle ':completion:*:complete:*:(functions|parameters|association-keys)' ignored-patterns '_*'
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.(o|c~|zwc)' '*?~'
 
-zstyle ':completion:*history*' remove-all-dups yes
-zstyle ':completion:*history*' stop yes
 
 ###
 #
@@ -107,10 +105,6 @@ hosts=(
 )
 zstyle ':completion:*:hosts' hosts $hosts
 
-# make zsh autocomplete with up arrow with the history
-bindkey "^[[A" history-beginning-search-backward-end
-bindkey "^[[B" history-beginning-search-forward-end
-
 # this one is very nice:
 # cursor up/down look for a command that started like the one starting on the command line
 function history-search-end {
@@ -135,6 +129,20 @@ function history-search-end {
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
+# some keys
+#bindkey "\e[A" history-beginning-search-backward #cursor up
+#bindkey "\e[B" history-beginning-search-forward  #cursor down
+bindkey "\e[A" history-beginning-search-backward-end #cursor up
+bindkey "\e[B" history-beginning-search-forward-end  #cursor down
+
+## dabbrev for zsh!!
+zstyle ':completion:history-words:*:history-words' stop yes
+zstyle ':completion:history-words:*:history-words' list no
+zstyle ':completion:history-words:*' remove-all-dups yes
+zstyle ':completion:history-words:*' menu yes
+bindkey '\e[15~' _history-complete-older #F5
+bindkey '\e[28~' _history-complete-newer #Shift-F5
+
 bash_source() {
   alias shopt=':'
   alias _expand=_bash_expand
@@ -154,3 +162,11 @@ autoload -Uz bashcompinit
 bashcompinit
 bash_source /etc/bash_completion.d/ack-grep
 
+# Show "waiting dots" while something tab-completes
+expand-or-complete-with-dots() {
+  echo -n "\e[31m......\e[0m"
+  zle expand-or-complete
+  zle redisplay
+}
+zle -N expand-or-complete-with-dots
+bindkey "^I" expand-or-complete-with-dots

@@ -12,6 +12,6 @@ setopt hist_find_no_dups
 setopt hist_ignore_space
 setopt hist_ignore_dups
 setopt hist_reduce_blanks
+setopt hist_allow_clobber
 
-setopt SHARE_HISTORY
-setopt APPEND_HISTORY
+#setopt SHARE_HISTORY

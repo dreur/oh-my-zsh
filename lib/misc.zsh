@@ -16,3 +16,6 @@ setopt CHECK_JOBS
 ## pager
 export PAGER=less
 export LC_CTYPE=en_US.UTF-8
+
+# Better safe than sorry
+setopt RM_STAR_WAIT
