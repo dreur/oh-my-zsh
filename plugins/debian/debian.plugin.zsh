@@ -21,22 +21,32 @@ if [[ -x `which apt-get` ]]; then
   }
 fi
 
+### Based On:
+### http://linuxcommando.blogspot.com/2008/08/how-to-show-apt-log-history.html
 function apt-history(){
   case "$1" in
     install)
-      cat /var/log/dpkg.log | grep 'install '
+      zgrep --no-filename 'install ' $(ls -rt /var/log/dpkg*)
       ;;
     upgrade|remove)
-      cat /var/log/dpkg.log | grep $1
+      zgrep --no-filename $1 $(ls -rt /var/log/dpkg*)
       ;;
     rollback)
-      cat /var/log/dpkg.log | grep upgrade | \
+      zgrep --no-filename upgrade $(ls -rt /var/log/dpkg*) | \
         grep "$2" -A10000000 | \
         grep "$3" -B10000000 | \
         awk '{print $4"="$5}'
       ;;
+    list)
+      zcat $(ls -rt /var/log/dpkg*)
+      ;;
     *)
-      cat /var/log/dpkg.log
+      echo "Parameters:"
+      echo " install - Lists all packages that have been installed."
+      echo " upgrade - Lists all packages that have been upgraded."
+      echo " remove - Lists all packages that have been removed."
+      echo " rollback - Lists rollback information."
+      echo " list - Lists all contains of dpkg logs."
       ;;
   esac
 }
