@@ -10,9 +10,6 @@ setopt list_packed
 
 WORDCHARS=''
 
-autoload -U compinit
-compinit -i
-
 zmodload -i zsh/complist
 
 # Use caching so that commands like apt and dpkg complete are useable
