@@ -6,7 +6,7 @@ setopt auto_menu         # show completion menu on succesive tab press
 setopt complete_in_word
 setopt complete_aliases
 setopt always_to_end
-setopt LIST_PACKED
+setopt list_packed
 
 WORDCHARS=''
 
@@ -66,6 +66,7 @@ zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.(o|c~|zwc)' '*?~'
 # on processes completion complete all user processes
 # zstyle ':completion:*:processes' command 'ps -au$USER'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:killall:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 zstyle ':completion:*:*:*:*:processes' command "ps -u `whoami` -o pid,user,comm -w -w"
 
 # only java files for javac

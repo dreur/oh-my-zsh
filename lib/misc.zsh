@@ -6,7 +6,7 @@ zle -N self-insert url-quote-magic
 bindkey "^[m" copy-prev-shell-word
 
 ## Scripting options
-setopt MULTIOS
+# setopt MULTIOS
 
 ## jobs
 setopt long_list_jobs
