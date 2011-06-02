@@ -20,4 +20,4 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} renamed"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} unmerged"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} untracked"
 
-MODE_INDICATOR="%{$fg_bold[magenta]%}<%{$reset_color%}%{$fg[magenta]%}<<%{$reset_color%}"
+#MODE_INDICATOR="%{$fg_bold[magenta]%}<%{$reset_color%}%{$fg[magenta]%}<<%{$reset_color%}"

@@ -80,7 +80,9 @@ noglob-command-line() {
 zle -N noglob-command-line
 
 rtfm() {
-  help $@ || nocorrect /usr/bin/man $@ || $@ -h || $@ --help || x-www-browser "http://www.google.com/search?q=linux ubuntu $@";
+  (nocorrect help $@ || nocorrect info $@ || nocorrect /usr/bin/man $@ || nocorrect $@ -h || nocorrect $@ --help || x-www-browser "http://www.google.com/search?q=linux ubuntu $@") 2> /dev/null;
 }
 alias man='rtfm'
-
+alias less='less -F -R'
+alias gvim='gvim --remote-tab-silent'
+alias rm='rm -I'
