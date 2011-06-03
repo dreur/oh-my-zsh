@@ -5,6 +5,11 @@ $ZSH_THEME_REPO_NAME_COLOR$(svn_get_repo_name)$ZSH_PROMPT_BASE_COLOR$ZSH_THEME_S
     fi
 }
 
+function svn_prompt_status {
+    if [[ -d .svn ]]; then
+        echo "$ZSH_PROMPT_BASE_COLOR$(svn_dirty)$ZSH_PROMPT_BASE_COLOR"
+    fi
+}
 
 function in_svn() {
     if [[ -d .svn ]]; then

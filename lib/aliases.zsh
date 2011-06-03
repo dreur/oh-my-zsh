@@ -80,7 +80,7 @@ noglob-command-line() {
 zle -N noglob-command-line
 
 rtfm() {
-  (nocorrect help $@ || nocorrect info $@ || nocorrect /usr/bin/man $@ || nocorrect $@ -h || nocorrect $@ --help || x-www-browser "http://www.google.com/search?q=linux ubuntu $@") 2> /dev/null;
+  (nocorrect help $@ || nocorrect /usr/bin/man $@ || nocorrect info --vi-keys $@ || nocorrect $@ -h || nocorrect $@ --help || x-www-browser "http://www.google.com/search?q=linux ubuntu $@") 2> /dev/null;
 }
 alias man='rtfm'
 alias less='less -F -R'
