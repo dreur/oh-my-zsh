@@ -1,3 +1,9 @@
+# Log colorizer
+# @see http://www.nongnu.org/regex-markup/
+# Other example can be taken from the example folder
+#
+# Usage: logview $ZSH/plugins/remark/examples/syslog /var/log/syslog
+
 
 function logview() {
   templogfile=`mktemp`
