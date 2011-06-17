@@ -6,16 +6,15 @@
 
 # TODO Improve to kill jobs when remark find an error in the files
 function logview() {
-  templogfile=`mktemp`
+  templogfile=$(mktemp)
 
-  tail -n +0 --follow=name "$2" | remark "$1" > $templogfile &
+  tail -n -10 --follow=name "$2" | remark "$1" >! $templogfile &
   pidRemark=$!
-
-  #if [ $? -ne 0 ]; then
-  #  kill $pidRemark &> /dev/null
-  #  exit 1
-  #fi
 
   less -R +F $templogfile
   kill $pidRemark &> /dev/null
+}
+
+function logview_debug() {
+remark "$1" < "$2"
 }

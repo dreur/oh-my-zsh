@@ -18,3 +18,10 @@ for color in {000..255}; do
     FG[$color]="%{[38;5;${color}m%}"
     BG[$color]="%{[48;5;${color}m%}"
 done
+
+function aa_256() {
+  for code in {000..255}; do
+    print -P -- "$code: %F{$code}Test%f"
+  done
+}
+
