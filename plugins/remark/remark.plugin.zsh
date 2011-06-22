@@ -3,12 +3,24 @@
 # Other example can be taken from the example folder
 #
 # Usage: logview $ZSH/plugins/remark/examples/syslog /var/log/syslog
+# Usage: logtail $ZSH/plugins/remark/examples/syslog /var/log/syslog
 
 # TODO Improve to kill jobs when remark find an error in the files
 function logview() {
   templogfile=$(mktemp)
 
-  tail -n -10 --follow=name "$2" | remark "$1" >! $templogfile &
+  tail -n +0 --follow=name "$2" | remark "$1" >! $templogfile &
+  pidRemark=$!
+  sleep 5s
+
+  less -R +F $templogfile
+  kill $pidRemark &> /dev/null
+}
+
+function logtail() {
+  templogfile=$(mktemp)
+
+  tail -n -100 --follow=name "$2" | remark "$1" >! $templogfile &
   pidRemark=$!
 
   less -R +F $templogfile
