@@ -156,10 +156,6 @@ have() {
   (( ${+commands[$1]} )) && have=yes
 }
 
-autoload -Uz bashcompinit
-bashcompinit
-bash_source /etc/bash_completion.d/ack-grep
-
 # Show "waiting dots" while something tab-completes
 expand-or-complete-with-dots() {
   echo -n "\e[31m......\e[0m"

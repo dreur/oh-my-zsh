@@ -10,3 +10,6 @@ umount_iso() {
     lsof /tmp/cdrom
   fi
 }
+
+alias reboot='sudo reboot'
+alias shutdown='sudo shutdown -h now'

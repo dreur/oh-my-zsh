@@ -7,10 +7,16 @@ setopt interactivecomments
 typeset -A abbrevs
 abbrevs=('...' '../..'
          '....' '../../..'
+         'cp' 'cp -i'
+         'mv' 'mv -i'
+         'rm' 'rm -I'
+         'ln' 'ln -i'
+         'chown' 'chown --preserve-root'
+         'chmod' 'chmod --preserve-root'
+         'chgrp' 'chgrp --preserve-root'
          'pu' 'pushd'
          'po' 'popd'
          'dir' 'ls -lSrah'
-         'ls' 'ls --color=auto'
          'ls' 'ls -la'
          'sl' 'ls'
          'lad' $'ls -d .*(/)\n# only show dot-directories'
@@ -38,7 +44,6 @@ abbrevs=('...' '../..'
          'cx' 'chmod +x'
          'e'  'print -l'
          'se' 'setopt interactivecomments'
-	 'afind' 'ack-grep -il'
  )
 
 # Create global aliases from the abbreviations.
@@ -86,4 +91,3 @@ rtfm() {
 alias man='rtfm'
 alias less='less -F -R'
 alias gvim='gvim --remote-tab-silent'
-alias rm='rm -I'
