@@ -25,21 +25,11 @@ style magentabg { pre "\E[45m" post "\E[49m" }
 style cyanbg    { pre "\E[46m" post "\E[49m" }
 style whitebg   { pre "\E[47m" post "\E[49m" }
 
-style standard   { pre "\E[38m" post "\E[39m" }		# XXX
-style standardbg { pre "\E[48m" post "\E[49m" }		# XXX
-style default    { pre "\E[39m" post "\E[39m" }		# XXX
-style defaultbg  { pre "\E[49m" post "\E[49m" }		# XXX
+style standard   { pre "\E[38m" post "\E[39m" }
+style standardbg { pre "\E[48m" post "\E[49m" }
+style default    { pre "\E[39m" post "\E[39m" }
+style defaultbg  { pre "\E[49m" post "\E[49m" }
 
-style time { bluebg white }
-style alert { yellowbg black }
-style error { red }
-style critical { redbg black }
-
-macro delete {
-  s/^.*$//
-}
-
-macro clean {
-  s/[<>]//g
-  s/  / /g
-}
+# Example of using 256 color codes
+# style myColor { pre "[38;5;PLACE_HOLDERm" post "\E[39m" } # Replace PLACE_HOLDER with 0-255 color codes.
+style paleGrey { pre "[38;5;243m" post "\E[39m" } 
