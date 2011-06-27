@@ -12,7 +12,7 @@ if [[ -x `which yaourt` ]]; then
   alias ysyu='yaourt -Syu -C' # Refresh upgrade
   alias yss='yaourt -Ss' # Search
   alias yr='yaourt -Rs' # Remove recursively keeping config
-  alias yrn='yaourt -Rsn' # Remove recursively without saving config
+  alias yrn='yaourt -Rcsn' # Remove recursively without saving config
 else
  upgrade() {
    sudo pacman -Syu

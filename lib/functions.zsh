@@ -49,3 +49,8 @@ function extract() {
     echo "'$1' is not a valid file"
   fi
 }
+
+have() {
+  unset have
+  (( ${+commands[$1]} )) && have=yes
+}

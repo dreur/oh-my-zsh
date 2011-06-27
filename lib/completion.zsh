@@ -128,10 +128,10 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
 # some keys
-#bindkey "\e[A" history-beginning-search-backward #cursor up
-#bindkey "\e[B" history-beginning-search-forward  #cursor down
-bindkey "\e[A" history-beginning-search-backward-end #cursor up
-bindkey "\e[B" history-beginning-search-forward-end  #cursor down
+bindkey "\e[A" history-beginning-search-backward #cursor u
+bindkey "\e[B" history-beginning-search-forward  #cursor down
+#bindkey "\e[A" history-beginning-search-backward-end #cursor up
+#bindkey "\e[B" history-beginning-search-forward-end  #cursor down
 
 ## dabbrev for zsh!!
 zstyle ':completion:history-words:*:history-words' stop yes
@@ -140,21 +140,6 @@ zstyle ':completion:history-words:*' remove-all-dups yes
 zstyle ':completion:history-words:*' menu yes
 bindkey '\e[15~' _history-complete-older #F5
 bindkey '\e[28~' _history-complete-newer #Shift-F5
-
-bash_source() {
-  alias shopt=':'
-  alias _expand=_bash_expand
-  alias _complete=_bash_comp
-  emulate -L sh
-  setopt kshglob noshglob braceexpand
-
-  source "$@"
-}
-
-have() {
-  unset have
-  (( ${+commands[$1]} )) && have=yes
-}
 
 # Show "waiting dots" while something tab-completes
 expand-or-complete-with-dots() {
