@@ -9,7 +9,8 @@ if [[ -x `which yaourt` ]]; then
   }
   alias ys='yaourt -S' # Sync
   alias ysy='yaourt -Sy' # Refresh
-  alias ysyu='yaourt -Syu -C' # Refresh upgrade
+  alias ysyu='yaourt -Syu' # Refresh upgrade
+  alias yc='yaourt -C' # Merge pacnew
   alias yss='yaourt -Ss' # Search
   alias yr='yaourt -Rs' # Remove recursively keeping config
   alias yrn='yaourt -Rcsn' # Remove recursively without saving config

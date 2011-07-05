@@ -48,7 +48,7 @@ abbrevs=('...' '../..'
 
 # Create global aliases from the abbreviations.
 for abbr in ${(k)abbrevs}; do
- alias -g $abbr="${abbrevs[$abbr]}"
+ alias $abbr="${abbrevs[$abbr]}"
 done
 
 globalias() {
