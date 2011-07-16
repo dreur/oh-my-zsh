@@ -7,13 +7,20 @@ if [[ -x `which yaourt` ]]; then
   upgrade () {
     yaourt -Syu -C
   }
-  alias ys='yaourt -S' # Sync
-  alias ysy='yaourt -Sy' # Refresh
-  alias ysyu='yaourt -Syu' # Refresh upgrade
-  alias yc='yaourt -C' # Merge pacnew
-  alias yss='yaourt -Ss' # Search
-  alias yr='yaourt -Rs' # Remove recursively keeping config
-  alias yrn='yaourt -Rcsn' # Remove recursively without saving config
+  # Pacman - https://wiki.archlinux.org/index.php/Pacman_Tips
+  alias yaupg='sudo yaourt -Syu'        # Synchronize with repositories before upgrading packages that are out of date on the local system.
+  alias yain='sudo yaourt -S'           # Install specific package(s) from the repositories
+  alias yains='sudo yaourt -U'          # Install specific package not from the repositories but from a file 
+  alias yare='sudo yaourt -R'           # Remove the specified package(s), retaining its configuration(s) and required dependencies
+  alias yarem='sudo yaourt -Rns'        # Remove the specified package(s), its configuration(s) and unneeded dependencies
+  alias yarep='yaourt -Si'              # Display information about a given package in the repositories
+  alias yareps='yaourt -Ss'             # Search for package(s) in the repositories
+  alias yaloc='yaourt -Qi'              # Display information about a given package in the local database
+  alias yalocs='yaourt -Qs'             # Search for package(s) in the local database
+  # Additional yaourt alias examples
+  alias yaupd='sudo yaourt -Sy && sudo abs'     # Update and refresh the local package and ABS databases against repositories
+  alias yainsd='sudo yaourt -S --asdeps'        # Install given package(s) as dependencies of another package
+  alias yamir='sudo yaourt -Syy'                # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 else
  upgrade() {
    sudo pacman -Syu
