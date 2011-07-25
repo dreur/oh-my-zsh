@@ -24,6 +24,7 @@ if [[ -x `which yaourt` ]]; then
     alias yaupd='yaourt -Sy'               # Update and refresh the local package and ABS databases against repositories
   fi
   alias yainsd='yaourt -S --asdeps'        # Install given package(s) as dependencies of another package
+  alias yainse='yaourt -D --asexplicit'    # Install given package(s) as explicit - It won't show as an orphan
   alias yamir='yaourt -Syy'                # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 else
  upgrade() {
@@ -48,6 +49,7 @@ else
   alias pacupd='sudo pacman -Sy'     # Update and refresh the local package and ABS databases against repositories
 fi
 alias pacinsd='sudo pacman -S --asdeps'        # Install given package(s) as dependencies of another package
+alias pacinse='sudo pacman -D --asexplicit'    # Install given package(s) as explicit - It won't show as an orphan
 alias pacmir='sudo pacman -Syy'                # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 
 # https://bbs.archlinux.org/viewtopic.php?id=93683
@@ -55,7 +57,7 @@ paclist() {
   sudo pacman -Qei $(pacman -Qu|cut -d" " -f 1)|awk ' BEGIN {FS=":"}/^Name/{printf("\033[1;36m%s\033[1;37m", $2)}/^Description/{print $2}'
 }
 
-alias paclsorphans='sudo pacman -Qdt'
+alias paclsorphans='sudo pacman -Qdt' # Use paxinse or yainse to install explicitly
 alias pacrmorphans='sudo pacman -Rs $(pacman -Qtdq)'
 
 pacdisowned() {
