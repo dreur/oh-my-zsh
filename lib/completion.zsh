@@ -141,11 +141,13 @@ zstyle ':completion:history-words:*' menu yes
 bindkey '\e[15~' _history-complete-older #F5
 bindkey '\e[28~' _history-complete-newer #Shift-F5
 
-# Show "waiting dots" while something tab-completes
-expand-or-complete-with-dots() {
-  echo -n "\e[31m......\e[0m"
-  zle expand-or-complete
-  zle redisplay
-}
-zle -N expand-or-complete-with-dots
-bindkey "^I" expand-or-complete-with-dots
+if [ "$DISABLE_COMPLETION_WAITING_DOTS" != "true" ]; then
+  # Show "waiting dots" while something tab-completes
+  expand-or-complete-with-dots() {
+    echo -n "\e[31m......\e[0m"
+    zle expand-or-complete
+    zle redisplay
+  }
+  zle -N expand-or-complete-with-dots
+  bindkey "^I" expand-or-complete-with-dots
+fi

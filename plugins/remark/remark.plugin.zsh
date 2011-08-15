@@ -9,7 +9,7 @@
 function logview() {
   templogfile=$(mktemp)
 
-  tail -n +0 --follow=name "$2" | remark "$1" >! $templogfile &
+  tail -n +0 --follow=name "$2" | remark -p "⇒" "$1" >! $templogfile &
   pidRemark=$!
   sleep 5s
 
