@@ -88,6 +88,5 @@ zle -N noglob-command-line
 rtfm() {
   (nocorrect help $@ || nocorrect /usr/bin/man $@ || ([ ${info -k "$@" 2> /dev/null | wc -l} -gt 0 ] && nocorrect info --vi-keys "$@") || nocorrect $@ -h || ( [[ -z "$@" ]] && nocorrect $@ --help) || x-www-browser "http://www.google.com/search?q=`uname -o` $@" &> /dev/null &) 2> /dev/null
 }
-alias man='rtfm'
 alias less='less -R'
 alias gvim='gvim --remote-tab-silent'

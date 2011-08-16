@@ -76,8 +76,8 @@ zstyle ':completion:*:mate:*' ignored-patterns "$bin_ignore"
 zstyle ':completion:*:vim:*' ignored-patterns "$bin_ignore"
 zstyle ':completion:*:gvim:*' ignored-patterns "$bin_ignore"
 # no binary files for less
-zstyle ':completion:*:less:*' ignored-patterns '*.(o|a|so|dvi|fig|out|class|pdf|ps|pyc)'
-zstyle ':completion:*:zless:*' ignored-patterns '*.(o|a|so|dvi|fig|out|class|pdf|ps|pyc)'
+zstyle ':completion:*:less:*' ignored-patterns "$bin_ignore"
+zstyle ':completion:*:zless:*' ignored-patterns "$bin_ignore"
 # pdf for xpdf
 zstyle ':completion:*:xpdf:*' files '*.pdf'
 # tar files
