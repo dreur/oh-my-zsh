@@ -128,7 +128,7 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
 # some keys
-bindkey "\e[A" history-beginning-search-backward #cursor u
+bindkey "\e[A" history-beginning-search-backward #cursor up
 bindkey "\e[B" history-beginning-search-forward  #cursor down
 #bindkey "\e[A" history-beginning-search-backward-end #cursor up
 #bindkey "\e[B" history-beginning-search-forward-end  #cursor down
@@ -141,8 +141,7 @@ zstyle ':completion:history-words:*' menu yes
 bindkey '\e[15~' _history-complete-older #F5
 bindkey '\e[28~' _history-complete-newer #Shift-F5
 
-if [ "$DISABLE_COMPLETION_WAITING_DOTS" != "true" ]; then
-  # Show "waiting dots" while something tab-completes
+if [ "x$COMPLETION_WAITING_DOTS" = "xtrue" ]; then
   expand-or-complete-with-dots() {
     echo -n "\e[31m......\e[0m"
     zle expand-or-complete
