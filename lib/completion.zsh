@@ -76,8 +76,8 @@ zstyle ':completion:*:mate:*' ignored-patterns "$bin_ignore"
 zstyle ':completion:*:vim:*' ignored-patterns "$bin_ignore"
 zstyle ':completion:*:gvim:*' ignored-patterns "$bin_ignore"
 # no binary files for less
-zstyle ':completion:*:less:*' ignored-patterns '*.(o|a|so|dvi|fig|out|class|pdf|ps|pyc)'
-zstyle ':completion:*:zless:*' ignored-patterns '*.(o|a|so|dvi|fig|out|class|pdf|ps|pyc)'
+zstyle ':completion:*:less:*' ignored-patterns "$bin_ignore"
+zstyle ':completion:*:zless:*' ignored-patterns "$bin_ignore"
 # pdf for xpdf
 zstyle ':completion:*:xpdf:*' files '*.pdf'
 # tar files
@@ -128,7 +128,7 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
 # some keys
-bindkey "\e[A" history-beginning-search-backward #cursor u
+bindkey "\e[A" history-beginning-search-backward #cursor up
 bindkey "\e[B" history-beginning-search-forward  #cursor down
 #bindkey "\e[A" history-beginning-search-backward-end #cursor up
 #bindkey "\e[B" history-beginning-search-forward-end  #cursor down
@@ -141,11 +141,12 @@ zstyle ':completion:history-words:*' menu yes
 bindkey '\e[15~' _history-complete-older #F5
 bindkey '\e[28~' _history-complete-newer #Shift-F5
 
-# Show "waiting dots" while something tab-completes
-expand-or-complete-with-dots() {
-  echo -n "\e[31m......\e[0m"
-  zle expand-or-complete
-  zle redisplay
-}
-zle -N expand-or-complete-with-dots
-bindkey "^I" expand-or-complete-with-dots
+if [ "x$COMPLETION_WAITING_DOTS" = "xtrue" ]; then
+  expand-or-complete-with-dots() {
+    echo -n "\e[31m......\e[0m"
+    zle expand-or-complete
+    zle redisplay
+  }
+  zle -N expand-or-complete-with-dots
+  bindkey "^I" expand-or-complete-with-dots
+fi
