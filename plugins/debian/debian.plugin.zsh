@@ -4,8 +4,6 @@
 #
 # Debian-related zsh aliases and functions for zsh
 
-<<<<<<< HEAD
-=======
 # Use aptitude if installed, or apt-get if not.
 # You can just set apt_pref='apt-get' to override it.
 if [[ -e $( which aptitude ) ]]; then
@@ -19,41 +17,17 @@ if [[ -e $( which sudo ) ]]; then
     use_sudo=1
 fi
 
->>>>>>> 757fa3314d1c041ab715dbda838f3e9b2ff9ce17
 # Aliases ###################################################################
 # These are for more obscure uses of apt-get and aptitude that aren't covered
 # below.
 alias ag='apt-get'
 alias at='aptitude'
 
-# Look for apt, and add some useful functions if we have it.
-if [[ -x `which apt-get` ]]; then
-  alias apt-get='noglob sudo apt-get'
-  alias aptitude='noglob sudo aptitude'
-
-  upgrade () {
-  	if [ -z $1 ] ; then
-  		sudo apt-get update
-  		sudo apt-get -u upgrade
-  	else
-  		ssh $1 sudo apt-get update
-  		# ask before the upgrade
-  		local dummy
-  		ssh $1 sudo apt-get --no-act upgrade
-  		echo -n "Process the upgrade ?"
-  		read -q dummy
-  		if [[ $dummy == "y" ]] ; then
-  			ssh $1 sudo apt-get -u upgrade --yes
-  		fi
-  	fi
-  }
-fi
-
 # Some self-explanatory aliases
 alias acs="apt-cache search"
 alias aps='aptitude search'
 alias as="aptitude -F \"* %p -> %d \n(%v/%V)\" \
-		--no-gui --disable-columns search"	# search package
+    --no-gui --disable-columns search"  # search package
 
 # apt-file
 alias afs='apt-file search --regexp'
@@ -80,7 +54,7 @@ if [[ $use_sudo -eq 1 ]]; then
 
     # apt-get only
     alias ads="sudo $apt_pref dselect-upgrade"
-    
+
     # Install all .deb files in the current directory.
     # Warning: you will need to put the glob in single quotes if you use:
     # glob_subst
@@ -158,51 +132,19 @@ apt-copy() {
     chmod +x apt-copy.sh
 }
 
-### Based On:
-### http://linuxcommando.blogspot.com/2008/08/how-to-show-apt-log-history.html
-function apt-history(){
-  case "$1" in
-    install)
-      zgrep --no-filename 'install ' $(ls -rt /var/log/dpkg*)
-      ;;
-    upgrade|remove)
-      zgrep --no-filename $1 $(ls -rt /var/log/dpkg*)
-      ;;
-    rollback)
-      zgrep --no-filename upgrade $(ls -rt /var/log/dpkg*) | \
-        grep "$2" -A10000000 | \
-        grep "$3" -B10000000 | \
-        awk '{print $4"="$5}'
-      ;;
-    list)
-      zcat $(ls -rt /var/log/dpkg*)
-      ;;
-    *)
-      echo "Parameters:"
-      echo " install - Lists all packages that have been installed."
-      echo " upgrade - Lists all packages that have been upgraded."
-      echo " remove - Lists all packages that have been removed."
-      echo " rollback - Lists rollback information."
-      echo " list - Lists all contains of dpkg logs."
-      ;;
-  esac
-}
 
 # Kernel-package building shortcut
 kerndeb () {
     # temporarily unset MAKEFLAGS ( '-j3' will fail )
-    MAKEFLAGS=$( print - $MAKEFLAGS | perl -pe 's/-j\s*[\d]+//g' )		
+    MAKEFLAGS=$( print - $MAKEFLAGS | perl -pe 's/-j\s*[\d]+//g' )
     print '$MAKEFLAGS set to '"'$MAKEFLAGS'"
-	appendage='-custom' # this shows up in $ (uname -r )
+  appendage='-custom' # this shows up in $ (uname -r )
     revision=$(date +"%Y%m%d") # this shows up in the .deb file name
 
     make-kpkg clean
 
     time fakeroot make-kpkg --append-to-version "$appendage" --revision \
         "$revision" kernel_image kernel_headers
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> 757fa3314d1c041ab715dbda838f3e9b2ff9ce17
+
