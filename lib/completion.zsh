@@ -69,7 +69,7 @@ zstyle ':completion:*:*:*:*:processes' command "ps -u `whoami` -o pid,user,comm 
 # only java files for javac
 zstyle ':completion:*:javac:*' files '*.java'h
 
-bin_ignore='*.(o|a|so|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pdf|ps|pyc)'
+bin_ignore='*.(o|a|so|aux|dvi|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pdf|ps|pyc)'
 # no binary files for vi or textmate
 zstyle ':completion:*:vi:*' ignored-patterns "$bin_ignore"
 zstyle ':completion:*:mate:*' ignored-patterns "$bin_ignore"
