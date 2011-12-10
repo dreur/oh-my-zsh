@@ -90,3 +90,4 @@ rtfm() {
 }
 alias less='less -R'
 alias gvim='gvim --remote-tab-silent'
+alias sudov='sudoedit'
