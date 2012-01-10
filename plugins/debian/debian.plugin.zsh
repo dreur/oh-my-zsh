@@ -159,7 +159,6 @@ apt-history () {
   esac
 }
 
-
 # Kernel-package building shortcut
 kerndeb () {
     # temporarily unset MAKEFLAGS ( '-j3' will fail )

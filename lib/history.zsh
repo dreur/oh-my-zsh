@@ -13,6 +13,7 @@ setopt hist_ignore_space
 setopt hist_ignore_dups
 setopt hist_reduce_blanks
 setopt hist_allow_clobber
+setopt share_history # share command history data
 
 #setopt SHARE_HISTORY
 
