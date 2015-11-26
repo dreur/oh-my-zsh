@@ -81,19 +81,19 @@ pacdisowned() {
 # Journal control (journalctl) aliases
 # Disable it by setting ZSH_JOURNALCTL to false
 if [ -z $ZSH_JOURNALCTL ] || [ $ZSH_JOURNALCTL ]; then
-	alias ju="sudo journalctl -eu"				# Show some unit's journal
-	alias jfu="sudo journalctl -feu"			# Follow some unit's journal
+	alias ju="sudo journalctl -eu"         # Show some unit's journal
+	alias jfu="sudo journalctl -feu"       # Follow some unit's journal
 fi
 
 # Network control (netctl) aliases
 # Disable it by setting ZSH_NETCTL to false
 if [ -z $ZSH_NETCTL ] || [ $ZSH_NETCTL ]; then
-	alias nc-l="netctl list"							# Show network profiles list
-	alias nc-s="netctl status"						# Show a profile's status
-	alias nc-ed="netctl edit"							# Edit a profile
-	alias nc-eb="netctl enable"						# Enable a profile
-	alias nc-db="netctl disable"					# Disable a profile
-	alias nc-rst="netctl restart"					# etc ...
+	alias nc-l="netctl list"               # Show network profiles list
+	alias nc-s="netctl status"             # Show a profile's status
+	alias nc-ed="netctl edit"              # Edit a profile
+	alias nc-eb="netctl enable"            # Enable a profile
+	alias nc-db="netctl disable"           # Disable a profile
+	alias nc-rst="netctl restart"          # etc ...
 	alias nc-st="netctl start"
 	alias nc-sp="netctl stop"
 	alias nc-spa="netctl stop-all"
@@ -103,15 +103,15 @@ fi
 # System control (systemctl) aliases
 # Disable it by setting ZSH_SYSTEMCTL to false
 if [ -z $ZSH_SYSTEMCTL ] || [ $ZSH_SYSTEMCTL ]; then
-	alias sc-po="sudo systemctl poweroff"	# Shut-down and poweroff the system
-	alias sc-rb="sudo systemctl reboot"		# Shut-down and reboot the system
+	alias sc-po="sudo systemctl poweroff"  # Shut-down and poweroff the system
+	alias sc-rb="sudo systemctl reboot"    # Shut-down and reboot the system
 
 	# Units control
-	alias sc-ex="sudo systemctl exit"			# Ask for user instance termination
-	alias sc-ed="sudo systemctl edit"			# Edit unit's config
-	alias sc-eb="sudo systemctl enable"		# Enable a unit
-	alias sc-db="sudo systemctl disable"		# Disable
-	alias sc-s="sudo systemctl status"		# I guess you understand the rest :)
+	alias sc-ex="sudo systemctl exit"      # Ask for user instance termination
+	alias sc-ed="sudo systemctl edit"      # Edit unit's config
+	alias sc-eb="sudo systemctl enable"    # Enable a unit
+	alias sc-db="sudo systemctl disable"   # Disable
+	alias sc-s="sudo systemctl status"     # I guess you understand the rest :)
 	alias sc-sp="sudo systemctl stop"
 	alias sc-st="sudo systemctl start"
 	alias sc-sw="sudo systemctl show"
