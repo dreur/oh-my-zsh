@@ -90,14 +90,14 @@ fi
 if [ -z $ZSH_NETCTL ] || [ $ZSH_NETCTL ]; then
 	alias nc-l="netctl list"               # Show network profiles list
 	alias nc-s="netctl status"             # Show a profile's status
-	alias nc-ed="netctl edit"              # Edit a profile
-	alias nc-eb="netctl enable"            # Enable a profile
-	alias nc-db="netctl disable"           # Disable a profile
-	alias nc-rst="netctl restart"          # etc ...
-	alias nc-st="netctl start"
-	alias nc-sp="netctl stop"
-	alias nc-spa="netctl stop-all"
-	alias nc-swt="netctl switch-to"
+	alias nc-ed="sudo netctl edit"              # Edit a profile
+	alias nc-eb="sudo netctl enable"            # Enable a profile
+	alias nc-db="sudo netctl disable"           # Disable a profile
+	alias nc-rst="sudo netctl restart"          # etc ...
+	alias nc-st="sudo netctl start"
+	alias nc-sp="sudo netctl stop"
+	alias nc-spa="sudo netctl stop-all"
+	alias nc-swt="sudo netctl switch-to"
 fi
 
 # System control (systemctl) aliases
